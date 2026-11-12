@@ -28,3 +28,8 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+- Marketing site with one route file per section (/, /hizmetler, /projeler, /maliyet-hesaplama, /iletisim); shared header/footer/floating contact live in `__root.tsx` so every page gets them.
+- Contact details live only in `src/lib/site.ts` and project/service content in `src/lib/projects.ts` / `src/lib/services.ts`, so copy changes happen in one place.
+- Cost estimates are computed client-side in `src/lib/estimate.ts`; forms hand off to WhatsApp (no backend) until a real lead store is requested.
