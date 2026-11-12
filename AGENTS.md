@@ -30,6 +30,7 @@ use the editor.
 <!-- LOVABLE:END -->
 
 ## Project rules
-- Marketing site with one route file per section (/, /hizmetler, /projeler, /maliyet-hesaplama, /iletisim); shared header/footer/floating contact live in `__root.tsx` so every page gets them.
+- Marketing site with one route file per section (/, /hizmetler, /projeler, /maliyet-hesaplama, /proje-asistani, /iletisim); shared header/footer/floating contact live in `__root.tsx` so every page gets them.
 - Contact details live only in `src/lib/site.ts` and project/service content in `src/lib/projects.ts` / `src/lib/services.ts`, so copy changes happen in one place.
 - Cost estimates are computed client-side in `src/lib/estimate.ts`; forms hand off to WhatsApp (no backend) until a real lead store is requested.
+- The AI project assistant posts to the `/api/proje-ozeti` server route, which streams NDJSON partial/done/error events from the AI Gateway; request limits and the output schema live in `src/lib/project-brief.ts` so browser and server validate identically. Photos are resized in the browser and never stored.
