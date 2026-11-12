@@ -10,33 +10,80 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as HizmetlerRouteImport } from './routes/hizmetler'
+import { Route as IletisimRouteImport } from './routes/iletisim'
+import { Route as MaliyetHesaplamaRouteImport } from './routes/maliyet-hesaplama'
+import { Route as ProjelerRouteImport } from './routes/projeler'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HizmetlerRoute = HizmetlerRouteImport.update({
+  id: '/hizmetler',
+  path: '/hizmetler',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IletisimRoute = IletisimRouteImport.update({
+  id: '/iletisim',
+  path: '/iletisim',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MaliyetHesaplamaRoute = MaliyetHesaplamaRouteImport.update({
+  id: '/maliyet-hesaplama',
+  path: '/maliyet-hesaplama',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjelerRoute = ProjelerRouteImport.update({
+  id: '/projeler',
+  path: '/projeler',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/hizmetler': typeof HizmetlerRoute
+  '/iletisim': typeof IletisimRoute
+  '/maliyet-hesaplama': typeof MaliyetHesaplamaRoute
+  '/projeler': typeof ProjelerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/hizmetler': typeof HizmetlerRoute
+  '/iletisim': typeof IletisimRoute
+  '/maliyet-hesaplama': typeof MaliyetHesaplamaRoute
+  '/projeler': typeof ProjelerRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/hizmetler': typeof HizmetlerRoute
+  '/iletisim': typeof IletisimRoute
+  '/maliyet-hesaplama': typeof MaliyetHesaplamaRoute
+  '/projeler': typeof ProjelerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/hizmetler' | '/iletisim' | '/maliyet-hesaplama' | '/projeler'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/hizmetler' | '/iletisim' | '/maliyet-hesaplama' | '/projeler'
+  id:
+    | '__root__'
+    | '/'
+    | '/hizmetler'
+    | '/iletisim'
+    | '/maliyet-hesaplama'
+    | '/projeler'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  HizmetlerRoute: typeof HizmetlerRoute
+  IletisimRoute: typeof IletisimRoute
+  MaliyetHesaplamaRoute: typeof MaliyetHesaplamaRoute
+  ProjelerRoute: typeof ProjelerRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +95,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/hizmetler': {
+      id: '/hizmetler'
+      path: '/hizmetler'
+      fullPath: '/hizmetler'
+      preLoaderRoute: typeof HizmetlerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/iletisim': {
+      id: '/iletisim'
+      path: '/iletisim'
+      fullPath: '/iletisim'
+      preLoaderRoute: typeof IletisimRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/maliyet-hesaplama': {
+      id: '/maliyet-hesaplama'
+      path: '/maliyet-hesaplama'
+      fullPath: '/maliyet-hesaplama'
+      preLoaderRoute: typeof MaliyetHesaplamaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projeler': {
+      id: '/projeler'
+      path: '/projeler'
+      fullPath: '/projeler'
+      preLoaderRoute: typeof ProjelerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  HizmetlerRoute: HizmetlerRoute,
+  IletisimRoute: IletisimRoute,
+  MaliyetHesaplamaRoute: MaliyetHesaplamaRoute,
+  ProjelerRoute: ProjelerRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
