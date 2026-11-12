@@ -15,24 +15,29 @@ const NAV = [
 export function SiteHeader() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [scrolled, setScrolled] = useState(false);
+  const [inHero, setInHero] = useState(true);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    // The home showcase is a tall sticky section; keep the header dark while it is on screen.
+    const onScroll = () => {
+      setScrolled(window.scrollY > 40);
+      setInHero(window.scrollY < window.innerHeight * 2.3);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
   useEffect(() => setOpen(false), [pathname]);
 
-  const overHero = pathname === "/" && !scrolled && !open;
+  const overHero = pathname === "/" && inHero && !open;
 
   return (
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-500",
         overHero
-          ? "bg-transparent text-ink-foreground"
+          ? cn("text-ink-foreground", scrolled ? "bg-ink/40 backdrop-blur-xl" : "bg-transparent")
           : "border-b border-border/60 bg-background/85 text-foreground shadow-soft backdrop-blur-xl",
       )}
     >

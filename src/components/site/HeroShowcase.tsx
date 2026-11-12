@@ -81,7 +81,7 @@ export function HeroShowcase() {
 
         <div className="relative mx-auto flex h-full max-w-7xl flex-col justify-end px-5 pt-28 pb-16 md:px-8 md:pb-20">
           <div className="max-w-3xl text-ink-foreground">
-            <p className="mb-6 inline-flex items-center gap-3 rounded-full border border-ink-foreground/25 bg-ink-foreground/10 px-4 py-1.5 text-xs font-semibold tracking-[0.2em] uppercase backdrop-blur-md">
+            <p className="mb-6 inline-flex items-center gap-3 rounded-full border border-ink-foreground/25 bg-ink-foreground/10 px-4 py-1.5 text-[10px] font-semibold tracking-[0.18em] uppercase backdrop-blur-md sm:text-xs sm:tracking-[0.2em]">
               <span className="size-1.5 rounded-full bg-gold" />
               Anahtar Teslim · Tadilat · İç Mimari
             </p>
