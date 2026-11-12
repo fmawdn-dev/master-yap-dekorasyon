@@ -42,6 +42,7 @@ export function HeroShowcase() {
 
   const active = Math.min(n - 1, Math.floor(progress * n * 0.999));
   const local = progress * n - active; // 0..1 within current slide
+  const current = SHOWCASE[active]!;
 
   const jumpTo = (i: number) => {
     const el = sectionRef.current;
@@ -115,10 +116,10 @@ export function HeroShowcase() {
           <div className="mt-12 flex flex-wrap items-end justify-between gap-6 border-t border-ink-foreground/15 pt-6 text-ink-foreground">
             <div key={active} className="animate-in fade-in slide-in-from-bottom-2 duration-700">
               <p className="text-xs font-semibold tracking-[0.25em] text-gold uppercase">
-                {String(active + 1).padStart(2, "0")} / {String(n).padStart(2, "0")} · {SHOWCASE[active].tag}
+                {String(active + 1).padStart(2, "0")} / {String(n).padStart(2, "0")} · {current.tag}
               </p>
-              <p className="mt-1 font-display text-2xl md:text-3xl">{SHOWCASE[active].title}</p>
-              <p className="text-sm text-ink-foreground/65">{SHOWCASE[active].place}</p>
+              <p className="mt-1 font-display text-2xl md:text-3xl">{current.title}</p>
+              <p className="text-sm text-ink-foreground/65">{current.place}</p>
             </div>
             <div className="flex items-center gap-4">
               <div className="flex gap-2">

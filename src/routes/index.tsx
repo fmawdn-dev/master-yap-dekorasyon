@@ -29,7 +29,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const feature = BEFORE_AFTER[0];
+  const feature = BEFORE_AFTER[0]!;
   return (
     <>
       <HeroShowcase />

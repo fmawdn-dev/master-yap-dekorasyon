@@ -9,14 +9,14 @@ const STATS = [
   { value: 45, suffix: "", label: "Uzman usta & mimar" },
 ];
 
-function CountUp({ to, prefix = "", suffix = "" }: { to: number; prefix?: string; suffix?: string }) {
+function CountUp({ to, prefix = "", suffix = "" }: { to: number; prefix?: string | undefined; suffix?: string | undefined }) {
   const ref = useRef<HTMLSpanElement>(null);
   const [n, setN] = useState(0);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const io = new IntersectionObserver(([e]) => {
-      if (!e.isIntersecting) return;
+      if (!e?.isIntersecting) return;
       io.disconnect();
       const start = performance.now();
       const tick = (t: number) => {

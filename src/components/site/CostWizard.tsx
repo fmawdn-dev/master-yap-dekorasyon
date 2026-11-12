@@ -115,7 +115,7 @@ export function CostWizard({ className }: { className?: string }) {
                 max={space.max}
                 step={space.step}
                 value={[area]}
-                onValueChange={([v]) => setArea(v)}
+                onValueChange={([v]) => v !== undefined && setArea(v)}
                 aria-label="Metrekare"
               />
               <div className="mt-3 flex justify-between text-xs text-muted-foreground">
