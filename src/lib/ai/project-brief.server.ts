@@ -137,5 +137,8 @@ export async function handleProjectBrief(request: Request): Promise<Response> {
       headers: { "Content-Type": "application/x-ndjson; charset=utf-8", "Cache-Control": "no-cache, no-transform" },
     }),
     runIdFetch,
+    undefined,
+    // Don't block the response on gateway headers: a failure before the gateway call would never resolve them.
+    { waitForUpstreamHeaders: false },
   );
 }
