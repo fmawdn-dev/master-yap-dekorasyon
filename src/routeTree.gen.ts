@@ -13,7 +13,9 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as HizmetlerRouteImport } from './routes/hizmetler'
 import { Route as IletisimRouteImport } from './routes/iletisim'
 import { Route as MaliyetHesaplamaRouteImport } from './routes/maliyet-hesaplama'
+import { Route as ProjeAsistaniRouteImport } from './routes/proje-asistani'
 import { Route as ProjelerRouteImport } from './routes/projeler'
+import { Route as ApiProjeOzetiRouteImport } from './routes/api/proje-ozeti'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -35,9 +37,19 @@ const MaliyetHesaplamaRoute = MaliyetHesaplamaRouteImport.update({
   path: '/maliyet-hesaplama',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjeAsistaniRoute = ProjeAsistaniRouteImport.update({
+  id: '/proje-asistani',
+  path: '/proje-asistani',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjelerRoute = ProjelerRouteImport.update({
   id: '/projeler',
   path: '/projeler',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiProjeOzetiRoute = ApiProjeOzetiRouteImport.update({
+  id: '/api/proje-ozeti',
+  path: '/api/proje-ozeti',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -46,14 +58,18 @@ export interface FileRoutesByFullPath {
   '/hizmetler': typeof HizmetlerRoute
   '/iletisim': typeof IletisimRoute
   '/maliyet-hesaplama': typeof MaliyetHesaplamaRoute
+  '/proje-asistani': typeof ProjeAsistaniRoute
   '/projeler': typeof ProjelerRoute
+  '/api/proje-ozeti': typeof ApiProjeOzetiRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/hizmetler': typeof HizmetlerRoute
   '/iletisim': typeof IletisimRoute
   '/maliyet-hesaplama': typeof MaliyetHesaplamaRoute
+  '/proje-asistani': typeof ProjeAsistaniRoute
   '/projeler': typeof ProjelerRoute
+  '/api/proje-ozeti': typeof ApiProjeOzetiRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -61,21 +77,38 @@ export interface FileRoutesById {
   '/hizmetler': typeof HizmetlerRoute
   '/iletisim': typeof IletisimRoute
   '/maliyet-hesaplama': typeof MaliyetHesaplamaRoute
+  '/proje-asistani': typeof ProjeAsistaniRoute
   '/projeler': typeof ProjelerRoute
+  '/api/proje-ozeti': typeof ApiProjeOzetiRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/hizmetler' | '/iletisim' | '/maliyet-hesaplama' | '/projeler'
+    | '/'
+    | '/hizmetler'
+    | '/iletisim'
+    | '/maliyet-hesaplama'
+    | '/proje-asistani'
+    | '/projeler'
+    | '/api/proje-ozeti'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/hizmetler' | '/iletisim' | '/maliyet-hesaplama' | '/projeler'
+  to:
+    | '/'
+    | '/hizmetler'
+    | '/iletisim'
+    | '/maliyet-hesaplama'
+    | '/proje-asistani'
+    | '/projeler'
+    | '/api/proje-ozeti'
   id:
     | '__root__'
     | '/'
     | '/hizmetler'
     | '/iletisim'
     | '/maliyet-hesaplama'
+    | '/proje-asistani'
     | '/projeler'
+    | '/api/proje-ozeti'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -83,7 +116,9 @@ export interface RootRouteChildren {
   HizmetlerRoute: typeof HizmetlerRoute
   IletisimRoute: typeof IletisimRoute
   MaliyetHesaplamaRoute: typeof MaliyetHesaplamaRoute
+  ProjeAsistaniRoute: typeof ProjeAsistaniRoute
   ProjelerRoute: typeof ProjelerRoute
+  ApiProjeOzetiRoute: typeof ApiProjeOzetiRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -116,11 +151,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MaliyetHesaplamaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/proje-asistani': {
+      id: '/proje-asistani'
+      path: '/proje-asistani'
+      fullPath: '/proje-asistani'
+      preLoaderRoute: typeof ProjeAsistaniRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projeler': {
       id: '/projeler'
       path: '/projeler'
       fullPath: '/projeler'
       preLoaderRoute: typeof ProjelerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/proje-ozeti': {
+      id: '/api/proje-ozeti'
+      path: '/api/proje-ozeti'
+      fullPath: '/api/proje-ozeti'
+      preLoaderRoute: typeof ApiProjeOzetiRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -131,7 +180,9 @@ const rootRouteChildren: RootRouteChildren = {
   HizmetlerRoute: HizmetlerRoute,
   IletisimRoute: IletisimRoute,
   MaliyetHesaplamaRoute: MaliyetHesaplamaRoute,
+  ProjeAsistaniRoute: ProjeAsistaniRoute,
   ProjelerRoute: ProjelerRoute,
+  ApiProjeOzetiRoute: ApiProjeOzetiRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
